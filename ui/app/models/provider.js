@@ -46,6 +46,7 @@ export default DS.Model.extend({
   }),
   pd_bai_3_legal_status: DS.attr({
     type: 'select',
+    autocomplete: true,
     choices: ENV.APP.resources.LEGAL_STATUSES,
     label: 'provider.fields.pd_bai_3_legal_status',
     hint: 'provider.hints.pd_bai_3_legal_status',
@@ -73,7 +74,7 @@ export default DS.Model.extend({
   pd_cli_3_tags: DS.attr({
     label: 'provider.fields.pd_cli_3_tags',
     hint: 'provider.hints.pd_cli_3_tags',
-    formComponent: 'agora-chips',
+    //formComponent: 'agora-chips',
   }),
   // location information
   pd_loi_1_street_name_and_number: DS.attr({
@@ -93,6 +94,7 @@ export default DS.Model.extend({
     hint: 'provider.hints.pd_loi_4_region',
   }),
   pd_loi_5_country_or_territory: DS.attr({
+    autocomplete: true,
   type: 'select',
   // Quickly bake an appropriate select-friendly array from original countries resource
   choices: function () {
@@ -123,7 +125,7 @@ export default DS.Model.extend({
     return shorten(get(this, 'description'));
   }),
   pd_mti_1_life_cycle_status: DS.attr({
-    type: 'select',
+    autocomplete: true,
     choices: ENV.APP.resources.PROVIDER_LIFE_CYCLE_STATUSES,
     label: 'provider.fields.pd_mti_1_life_cycle_status',
     hint: 'provider.hints.pd_mti_1_life_cycle_status',
@@ -181,6 +183,7 @@ export default DS.Model.extend({
     label: 'provider.fields.structure_names',
   }),
   pd_oth_6_esfri_domain: DS.hasMany('esfridomain', {
+    autocomplete: true,
     label: 'provider.fields.pd_oth_6_esfri_domain',
     hint: 'provider.hints.pd_oth_6_esfri_domain',
   }),
@@ -188,9 +191,10 @@ export default DS.Model.extend({
     label: 'provider.fields.esfridomain_names',
   }),
   pd_oth_7_esfri_type: DS.belongsTo('esfritype', {
+    autocomplete: true,
     label: 'provider.fields.pd_oth_7_esfri_type',
     hint: 'provider.hints.pd_oth_7_esfri_type',
-    inverse: null,
+    //inverse: null,
     formAttrs: {
       optionLabelAttr: 'name',
     },

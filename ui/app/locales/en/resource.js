@@ -68,7 +68,7 @@ const resource = {
     rd_mri_2_tagline: '',
     rd_mri_3_logo: 'Provide URL of the resource, which must be in https, in the form of the shortest possible alias',
     rd_mri_4_mulitimedia: 'Link to video, screenshots or slides showing details of the resource.',
-    rd_mri_6_target_customer_tags: 'This field will be used in the search function to prioritise results.<br/>Hit ENTER to register your tag.',
+    rd_mri_6_target_customer_tags: 'Comma separted values. This field will be used in the search function to prioritise results.',
     rd_mri_5_target_users: '',
     rd_mri_7_use_cases: 'Provide either descriptive text or URL of the webpage describing the use case, or both',
     rd_cli_1_scientific_domain: 'The branch of science, scientific discipline that is related to the service/resource.',

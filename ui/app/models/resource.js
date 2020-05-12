@@ -12,6 +12,7 @@ export default DS.Model.extend({
     hint: 'resource.hints.rd_bai_1_name',
   }),
   rd_bai_2_service_organisation: DS.belongsTo('provider', {
+    autocomplete: true,
     label: 'resource.fields.rd_bai_2_service_organisation',
     hint: 'resource.hints.rd_bai_2_service_organisation',
     formAttrs: {
@@ -57,7 +58,7 @@ export default DS.Model.extend({
   rd_mri_6_target_customer_tags: DS.attr({
     label: 'resource.fields.rd_mri_6_target_customer_tags',
     hint: 'resource.hints.rd_mri_6_target_customer_tags',
-    formComponent: 'agora-chips',
+    //formComponent: 'agora-chips',
   }),
   rd_mri_7_use_cases: DS.attr({
     label: 'resource.fields.rd_mri_7_use_cases',
