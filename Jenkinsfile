@@ -12,7 +12,7 @@ pipeline {
                 echo 'Building Rpm...'
                 sh '''
                     cd $WORKSPACE/$PROJECT_DIR
-                    docker-compose up -d
+                    docker-compose up -d --build
                     rm requirements*.txt
                     cd tests/selenium_tests
                     pipenv install --python 3
