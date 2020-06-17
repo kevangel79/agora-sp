@@ -13,6 +13,7 @@ pipeline {
                 sh '''
                     cd $WORKSPACE/$PROJECT_DIR
                     docker-compose up -d
+                    rm requirements*.txt
                     cd tests/selenium_tests
                     pipenv install --python 3
                     pipenv install selenium
