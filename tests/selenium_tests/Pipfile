@@ -6,8 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-selenium = "==3.141.0"
-urllib3 = "==1.25.9"
+selenium = "*"
+urllib3 = "*"
 
 [requires]
-python_version = "3"
+python_version = "3.6"
