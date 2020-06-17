@@ -14,11 +14,11 @@ pipeline {
                     cd ${WORKSPACE}/${PROJECT_DIR}
                     docker-compose up -d
                     scl enable rh-python36 bash
-                    cd ui/selenium_tests
+                    cd tests/selenium_tests
                     pip install requirements.txt
                     echo "Wait for argo container to initialize"
                     while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/ui/auth/login)" != "200" ]]; do sleep 5; done
-                    python agora_ui_tests.py
+                    python agora_ui_tests.py --url http://localhost:8000/
                 """
             }
             post {
