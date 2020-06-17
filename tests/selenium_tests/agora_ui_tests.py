@@ -14,17 +14,21 @@ from agora.providers.provider_create import CreateProvider
 from agora.providers.provider_form_validations import ProviderFormValidations
 from agora.resources.resource_create import ResourceCreate
 from agora.resources.resource_form_validations import ResourceFormValidations
-
+import argparse
 
 if __name__ == '__main__':
-    contact = ContactCreate("Firefox", headless=True, instance="https://testvm.agora.grnet.gr/")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--url", help="URL of the host to execute on the selenium tests", required=True)
+    args = parser.parse_args()
+
+    contact = ContactCreate("Firefox", headless=True, instance=args.url)
     contact.create_new_contact()
-    ContactFormValidations("Firefox", headless=True, instance="https://testvm.agora.grnet.gr/")
+    ContactFormValidations("Firefox", headless=True, instance=args.url)
 
-    provider = CreateProvider("Firefox", headless=True, instance="https://testvm.agora.grnet.gr/")
+    provider = CreateProvider("Firefox", headless=True, instance=args.url)
     provider.create_new_provider(required_only=False)
-    ProviderFormValidations("Firefox", headless=True, instance="https://testvm.agora.grnet.gr/")
+    ProviderFormValidations("Firefox", headless=True, instance=args.url)
 
-    resource = ResourceCreate("Firefox", headless=True, instance="https://testvm.agora.grnet.gr/")
+    resource = ResourceCreate("Firefox", headless=True, instance=args.url)
     resource.create_new_resource(required_only=False)
-    ResourceFormValidations("Firefox", headless=True, instance="https://testvm.agora.grnet.gr/")
+    ResourceFormValidations("Firefox", headless=True, instance=args.url)
