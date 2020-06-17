@@ -10,8 +10,8 @@ pipeline {
         stage ('Run Tests') {
             steps {
                 echo 'Building Rpm...'
-                sh """
-                    cd ${WORKSPACE}/${PROJECT_DIR}
+                sh '''
+                    cd $WORKSPACE/$PROJECT_DIR
                     docker-compose up -d
                     scl enable rh-python36 bash
                     cd tests/selenium_tests
@@ -19,7 +19,7 @@ pipeline {
                     echo "Wait for argo container to initialize"
                     while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/ui/auth/login)" != "200" ]]; do sleep 5; done
                     python agora_ui_tests.py --url http://localhost:8000/
-                """
+                '''
             }
             post {
                 always {
