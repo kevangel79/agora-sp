@@ -13,14 +13,13 @@ pipeline {
                 sh '''
                     cd $WORKSPACE/$PROJECT_DIR
                     docker-compose up -d
-                    scl enable rh-python36 bash
                     cd tests/selenium_tests
-                    pipenv install --python 3
-                    pipenv install selenium
+                    scl enable rh-python36 pipenv install --python 3
+                    scl enable rh-python36 pipenv install selenium
                     echo "Wait for argo container to initialize"
                     while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/ui/auth/login)" != "200" ]]; do sleep 5; done
-                    pipenv run python agora_ui_tests.py --url http://localhost:8000/
-                    pipenv --rm
+                    scl enable rh-python36 pipenv run python agora_ui_tests.py --url http://localhost:8000/
+                    scl enable rh-python36 pipenv --rm
                 '''
             }
             post {
