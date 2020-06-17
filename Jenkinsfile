@@ -15,7 +15,8 @@ pipeline {
                     docker-compose up -d
                     scl enable rh-python36 bash
                     cd tests/selenium_tests
-                    pipenv install
+                    pipenv install --python 3
+                    pipenv install selenium
                     echo "Wait for argo container to initialize"
                     while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/ui/auth/login)" != "200" ]]; do sleep 5; done
                     pipenv run python agora_ui_tests.py --url http://localhost:8000/
