@@ -15,5 +15,5 @@ ADD ./agora /srv/agora/agora
 
 WORKDIR /srv/agora/agora
 
-CMD python manage.py migrate &&  python manage.py loaddata fixtures/users.json && \
+CMD python manage.py migrate &&  ./populate_db.sh && \
     python manage.py runserver 0.0.0.0:80
