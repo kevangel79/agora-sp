@@ -20,11 +20,14 @@ pipeline {
                     echo "Wait for argo container to initialize"
                     while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/ui/auth/login)" != "200" ]]; do sleep 5; done
                     pipenv run python agora_ui_tests.py --url http://localhost:8000/
-                    pipenv --rm
                 '''
             }
             post {
                 always {
+                    sh '''
+                      cd $WORKSPACE/$PROJECT_DIR
+                      pipenv --rm
+                    '''
                     cleanWs()
                 }
             }
