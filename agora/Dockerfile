@@ -15,5 +15,5 @@ ADD ./agora /srv/agora/agora
 
 WORKDIR /srv/agora/agora
 
-CMD python manage.py migrate &&  ./populate_db.sh && \
+CMD python manage.py migrate && python manage.py loaddata all_testvm_data && \
     python manage.py runserver 0.0.0.0:80
