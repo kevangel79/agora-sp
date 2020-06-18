@@ -19,7 +19,6 @@ pipeline {
                     pipenv install selenium
                     echo "Wait for argo container to initialize"
                     while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/ui/auth/login)" != "200" ]]; do sleep 5; done
-                    sleep 10
                     pipenv run python agora_ui_tests.py --url http://localhost:8000/
                 '''
             }
@@ -27,6 +26,8 @@ pipeline {
                 always {
                     sh '''
                       cd $WORKSPACE/$PROJECT_DIR
+                      docker-compose down
+                      cd tests/selenium_tests
                       pipenv --rm
                     '''
                     cleanWs()
