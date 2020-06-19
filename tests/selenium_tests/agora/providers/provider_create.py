@@ -96,6 +96,14 @@ class CreateProvider(Providers):
         The create new provider page is here: https://testvm.agora.grnet.gr/ui/providers/create
         It calls all the methods they undertake to fill all the areas of the form.
 
+        **Προσοχή**
+            1.Λόγο ίσος ιδιαιτερώτητας και την σελίδας μας με το EmberJS, εν τέλει εφόσον το Selenium συνδεθεί
+        και καλέσει αυτή την συνάρτηση, τότε θα πρέπει να κάνω click στους providers από το αριστερό menu ώστε να με
+        πάει στην σελίδα `https://testvm.agora.grnet.gr/ui/providers/create`. Αλλιώς δεν με πηγαίνει. Αν κάνω ξανά
+        request, και ας έχω συνδεθεί πρωτήτερα, πάλι μου ζητάει κωδικούς.
+            2. Κάνω click σε href και όχι σε button! - Κατ' ουσία μάλλον δεν υπάρχει button εκεί, απλώς ένα href.
+
+
         @param required_only: Fill in only the required fields or not?
         @return: True if all goes well otherwise False.
         """
@@ -136,14 +144,8 @@ class CreateProvider(Providers):
             # *.BAI.4 - Legal Entity
             checkbox_field(self.driver, self.fields_prefix + "bai_4_legal_entity")
             # *.BAI.5 - Legal Status
-            self.driver.find_element_by_xpath("//md-content[@data-form-field-name='"
-                                              + self.fields_prefix +
-                                              "bai_5_legal_status']").find_element_by_tag_name(
-                "md-input-container") \
-                .click()
-            sleep(self.sleep_time)
-            self.driver.find_element_by_xpath("//md-option//div[text()='Foundation']").click()
-            sleep(self.sleep_time)
+            suggestion_input_field(self.driver, self.fields_prefix +  "bai_5_legal_status", "Foundation")
+
 
     def classification_information(self, required_only=False):
         """
@@ -217,12 +219,7 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # *.MTI.1 - Life Cycle Status
-        self.driver.find_element_by_xpath("//md-content[@data-form-field-name='"
-                                          + self.fields_prefix +
-                                          "mti_1_life_cycle_status']").find_element_by_tag_name("md-input-container")\
-                                                                      .click()
-        sleep(self.sleep_time)
-        self.driver.find_element_by_xpath("//md-option//div[text()='Other']").click()
+        suggestion_input_field(self.driver, self.fields_prefix + "mti_1_life_cycle_status", "Other")
 
         # *.MTI.2 - Certifications
         input_field(self.driver, self.fields_prefix + "mti_2_certifications", "ISO-1234")
@@ -277,3 +274,37 @@ class CreateProvider(Providers):
         # *.OTH.12 - National Roadmaps
         input_field(self.driver, self.fields_prefix + "oth_12_national_roadmaps", "SELENIUM")
 
+    # def save_new_provider(self):
+    #     """
+    #     Save the new Provider.
+    #
+    #     It tries to save the form and checks the response from the page.
+    #     @return: True if all goes well otherwise False.
+    #     """
+    #     self.driver.find_element_by_xpath('//button[text()="save"]').click()
+    #     sleep(self.sleep_time)
+    #
+    #     try:
+    #         if self.driver.find_element_by_class_name("toast-level-success"):
+    #             print("The page was successful saved.")
+    #     except:
+    #         pass
+    #         # raise exception_class(message, screen, stacktrace)
+    #         # selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: .toast-level-success
+    #
+    #     try:
+    #         if self.driver.find_element_by_class_name("toast-level-warning"):
+    #             print("The page wasn't saved. Form invalid.")
+    #
+    #     except:
+    #         pass
+    #         # raise exception_class(message, screen, stacktrace)
+    #         # selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: .toast-level-success
+    #
+    #     try:
+    #         if self.driver.find_element_by_class_name("toast-level-error"):
+    #             print("The page wasn't saved. Form Error.")
+    #     except:
+    #         pass
+    #         # raise exception_class(message, screen, stacktrace)
+    #         # selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: .toast-level-success

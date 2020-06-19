@@ -34,7 +34,6 @@ class ResourceFormValidations(ResourceCreate):
         """
         super().__init__(driver, headless, instance)
         print("\n# Validations in the Resource form.")
-        self.inputs = self.driver.find_elements_by_tag_name("md-input-container")
         self.valid_url_fields()
         self.valid_email_fields()
         save_invalid(self.driver)
@@ -50,41 +49,41 @@ class ResourceFormValidations(ResourceCreate):
         @return: True if the messages for all fields appear, otherwise False.
         """
         # *.BAI.4 - Webpage
-        url_input_validation(self.inputs[3])
+        url_input_validation(self.driver, self.fields_prefix + "bai_4_webpage")
 
         # *.MRI.3 - Logo
-        url_input_validation(self.inputs[6])
+        url_input_validation(self.driver, self.fields_prefix + "mri_3_logo")
         # *.MRI.4 - Mulitimedia
-        url_input_validation(self.inputs[7])
+        url_input_validation(self.driver, self.fields_prefix + "mri_4_mulitimedia")
         # *.MRI.5 - Use Cases
-        url_input_validation(self.inputs[8])
+        url_input_validation(self.driver, self.fields_prefix + "mri_5_use_cases")
 
-        # *.MGI.1 - Heldesk Webpage
-        url_input_validation(self.inputs[10])
+        # *.MGI.1 - Heldesk Page
+        url_input_validation(self.driver, self.fields_prefix + "mgi_1_helpdesk_webpage")
         # *.MGI.2 - User Manual
-        url_input_validation(self.inputs[11])
+        url_input_validation(self.driver, self.fields_prefix + "mgi_2_user_manual")
         # *.MGI.3 - Terms of Use
-        url_input_validation(self.inputs[12])
+        url_input_validation(self.driver, self.fields_prefix + "mgi_3_terms_of_use")
         # *.MGI.4 - Privacy Policy
-        url_input_validation(self.inputs[13])
+        url_input_validation(self.driver, self.fields_prefix + "mgi_4_privacy_policy")
         # *.MGI.5 - Access Policy
-        url_input_validation(self.inputs[14])
+        url_input_validation(self.driver, self.fields_prefix + "mgi_5_access_policy")
         # *.MGI.6 - Service Level
-        url_input_validation(self.inputs[15])
+        url_input_validation(self.driver, self.fields_prefix + "mgi_6_sla_specification")
         # *.MGI.7 - Training Information
-        url_input_validation(self.inputs[16])
+        url_input_validation(self.driver, self.fields_prefix + "mgi_7_training_information")
         # *.MGI.8 - Status Monitoring
-        url_input_validation(self.inputs[17])
+        url_input_validation(self.driver, self.fields_prefix + "mgi_8_status_monitoring")
         # *.MGI.9 - Maintenance
-        url_input_validation(self.inputs[18])
+        url_input_validation(self.driver, self.fields_prefix + "mgi_9_maintenance")
 
         # *.AOI.2 - Order
-        url_input_validation(self.inputs[37])
+        url_input_validation(self.driver, self.fields_prefix + "aoi_2_order")
 
         # ERP.FNI.1 - Payment Model
-        url_input_validation(self.inputs[38])
+        url_input_validation(self.driver, self.fields_prefix + "fni_1_payment_model")
         # ERP.FNI.2 - Pricing
-        url_input_validation(self.inputs[39])
+        url_input_validation(self.driver, self.fields_prefix + "fni_2_pricing")
 
     def valid_email_fields(self):
         """
@@ -96,9 +95,9 @@ class ResourceFormValidations(ResourceCreate):
         @return: True if the messages for all fields appear, otherwise False.
         """
         # *.COI.13 - Helpdesk Email
-        email_input_validation(self.inputs[24])
+        email_input_validation(self.driver, self.fields_prefix + "coi_13_helpdesk_email")
         # *.COI.14 - Security Contact Email
-        email_input_validation(self.inputs[25])
+        email_input_validation(self.driver, self.fields_prefix + "coi_14_security_contact_email")
 
     def delete(self):
         self.driver.find_element_by_xpath('//button[text()="delete"]').click()

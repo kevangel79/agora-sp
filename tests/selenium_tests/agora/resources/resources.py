@@ -36,9 +36,9 @@ class Resources(Agora):
         @param instance: The website instance of the Agora project to be used for the tests.
         """
         super().__init__(driver, headless, instance)
-        self.__resources_page()
+        self.resources_page()
 
-    def __resources_page(self):
+    def resources_page(self):
         """
         Private method which is responsible for going to the Resources page.
 
@@ -65,26 +65,3 @@ class Resources(Agora):
         self.driver.find_element_by_xpath("//a[@href='/ui/resources/create']").click()
         sleep(self.sleep_time)
 
-    @abstractmethod
-    def basic_information(self, required_only=False):
-        pass
-
-    @abstractmethod
-    def marketing_information(self, required_only=False):
-        pass
-
-    @abstractmethod
-    def classification_information(self, required_only=False):
-        pass
-
-    @abstractmethod
-    def management_information(self, required_only=False):
-        pass
-
-    @abstractmethod
-    def geographical_and_language_availability_information(self, required_only=False):
-        pass
-
-    @abstractmethod
-    def contact_information(self, required_only=False):
-        pass

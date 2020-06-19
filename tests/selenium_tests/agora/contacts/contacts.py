@@ -36,9 +36,9 @@ class Contacts(Agora):
         @param instance: The website instance of the Agora project to be used for the tests.
         """
         super().__init__(driver, headless, instance)
-        self.__contacts_page()
+        self.contacts_page()
 
-    def __contacts_page(self):
+    def contacts_page(self):
         """
         Private method which is responsible for going to the Contact Information page.
 
@@ -67,7 +67,3 @@ class Contacts(Agora):
         assert "create" in self.driver.find_element_by_xpath("//a[@href='/ui/contact-information/create']").text
         self.driver.find_element_by_xpath("//a[@href='/ui/contact-information/create']").click()
         sleep(self.sleep_time)
-
-    @abstractmethod
-    def basic_information(self):
-        pass

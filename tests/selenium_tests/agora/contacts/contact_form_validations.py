@@ -34,7 +34,6 @@ class ContactFormValidations(ContactCreate):
         """
         super().__init__(driver, headless, instance)
         print("\n# Validations in the Contact form.")
-        self.inputs = self.driver.find_elements_by_tag_name("md-input-container")
         self.valid_email_fields()
         self.valid_phone_fields()
         save_invalid(self.driver)
@@ -49,7 +48,7 @@ class ContactFormValidations(ContactCreate):
             2. When the form is submitted, we will get the message : "Form Invalid"
         @return: True if the messages for all fields appear, otherwise False.
         """
-        email_input_validation(self.inputs[2])
+        email_input_validation(self.driver, "email")
 
     def valid_phone_fields(self):
         """
@@ -62,4 +61,4 @@ class ContactFormValidations(ContactCreate):
             2. When the form is submitted, we will get the message : "Form Invalid"
         @return: True if the messages for all fields appear, otherwise False.
         """
-        phone_input_validation(self.inputs[3])
+        phone_input_validation(self.driver, "phone")

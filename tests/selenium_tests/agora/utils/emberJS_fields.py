@@ -11,18 +11,22 @@ __email__ = 'tasos@admin.grnet.gr'
 from time import sleep
 
 
-def input_field(page, field_name, text):
+def input_field(page, field_name, text, clear=False):
     """
     Function that fill in input fields.
 
     @param page: The object with which I can handle the page.
     @param field_name: The unique name of the input field with which you can search for it on the page.
     @param text: The text with which the field will be completed.
+    @param clear: If it is true, it will clear it before it completes the field.
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    page.find_element_by_name(field_name).send_keys(text)
     # assert field_name in page.find_element_by_name(field_name)
+    if clear:
+        page.find_element_by_name(field_name).find_element_by_xpath("//input").clear()
+        # page.find_element_by_name(field_name).clear()
+    page.find_element_by_name(field_name).send_keys(text)
     print("{0:<40} Found and filled \t{1}".format('['+field_name+']', "Success"))
 
 

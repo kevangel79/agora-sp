@@ -79,6 +79,36 @@ class Agora(ABC, unittest.TestCase):
         self.driver.find_element_by_xpath('//md-content//button[text()="login"]').click()
         sleep(2)
 
+    def edit_from_listView(self):
+        """
+        Method which is responsible to go to the edit page from the first record of a list view.
+
+        The edit page of a record from list view is here: https://testvm.agora.grnet.gr/ui/SOMETHIG/58.../edit
+        @requires the successful execution of the following methods :
+            1. basic_authentication
+            2. contacts_page
+        """
+        # assert "create" in self.driver.find_element_by_xpath("//a[@href='/ui/contact-information/create']").text
+        actions = self.driver.find_element_by_css_selector("[class='row-actions ember-view md-cell']")
+        actions.find_elements_by_css_selector("[class='gen-action']")[1].click()
+        print("{0:<40} Found and visited \t{1}".format('[Edit page]', "Success"))
+
+    def details_from_listView(self):
+        """
+        Method which is responsible to go to the detail page from the first record of a list view.
+
+        The edit page of a record from list view is here: https://testvm.agora.grnet.gr/ui/SOMETHIG/58...
+        @requires the successful execution of the following methods :
+            1. basic_authentication
+            2. contacts_page
+        """
+        # assert "create" in self.driver.find_element_by_xpath("//a[@href='/ui/contact-information/create']").text
+        actions = self.driver.find_element_by_css_selector("[class='row-actions ember-view md-cell']")
+        actions.find_elements_by_css_selector("[class='gen-action']")[0].click()
+        print("{0:<40} Found and visited \t{1}".format('[Details page]', "Success"))
+
+    def listView_operations(self):
+        pass
 
     def close(self):
         """

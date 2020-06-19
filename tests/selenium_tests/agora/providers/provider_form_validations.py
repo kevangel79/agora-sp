@@ -47,19 +47,9 @@ class ProviderFormValidations(CreateProvider):
             2. When the form is submitted, we will get the message : "Form Invalid"
         @return: True if the messages for all fields appear, otherwise False.
         """
-        self.inputs = self.driver.find_elements_by_tag_name("md-input-container")
-
         # *.BAI.3 - Website
-        self.inputs[3].find_element_by_tag_name("input").clear()
-        self.inputs[3].find_element_by_tag_name("input").send_keys("123456")
-        url_input_validation(self.inputs[3])
-
+        url_input_validation(self.driver, self.fields_prefix + "bai_3_website")
         # *.MRI.2 - Logo
-        self.inputs[13].find_element_by_tag_name("input").clear()
-        self.inputs[13].find_element_by_tag_name("input").send_keys("123456")
-        url_input_validation(self.inputs[13])
-
+        url_input_validation(self.driver, self.fields_prefix + "mri_2_logo")
         # *.MRI.3 - Multimedia
-        self.inputs[14].find_element_by_tag_name("input").clear()
-        self.inputs[14].find_element_by_tag_name("input").send_keys("123456")
-        url_input_validation(self.inputs[14])
+        url_input_validation(self.driver, self.fields_prefix + "mri_3_multimedia")

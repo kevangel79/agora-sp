@@ -9,7 +9,7 @@ __author__ = 'Tas-sos'
 __email__ = 'tasos@admin.grnet.gr'
 
 from agora.contacts.contacts import Contacts
-from agora.utils.emberJS_fields import input_field
+from agora.utils.emberJS_fields import input_field, suggestion_input_field
 from agora.validations.delete_responses import delete_success
 from agora.validations.save_responses import save_success
 from time import sleep
@@ -81,7 +81,4 @@ class ContactCreate(Contacts):
         # Position
         input_field(self.driver, "position", "Automatic UI tests")
         # Provider
-        provider = self.driver.find_element_by_xpath("//md-content[@data-form-field-name='organisation']")
-        provider.find_elements_by_tag_name("md-select")[0].click()
-        self.driver.find_element_by_xpath("//md-option//div[text()='EGI Foundation']").click()
-        sleep(self.sleep_time)
+        suggestion_input_field(self.driver, self.fields_prefix + "organisation", "EGI Foundation")
