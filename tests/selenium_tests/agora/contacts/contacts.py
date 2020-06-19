@@ -48,7 +48,7 @@ class Contacts(Agora):
         """
         sleep(self.sleep_time)
         # Owners
-        self.driver.find_elements_by_tag_name("md-list-item")[4].click()
+        self.driver.find_elements_by_tag_name("md-list-item")[3].click()
         # Contact Information
         self.driver.find_element_by_xpath("//a[@href='/ui/contact-information']").click()
         sleep(self.sleep_time)
