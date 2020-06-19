@@ -6,12 +6,12 @@ import {
   DETAILS_FIELDSETS,
   TABLE_FIELDS,
   SORT_FIELDS,
-} from '../utils/common/subcategory';
+} from '../utils/common/legalstatus';
 
 export default AgoraGen.extend({
-  modelName: 'subcategory',
-  path: 'subcategories',
-  resourceName: 'api/v2/subcategories',
+  modelName: 'legalstatus',
+  path: 'legalstatuses',
+  resourceName: 'api/v2/legalstatuses',
   common: {
     validators: {
       id: [validate.presence(true)],
@@ -20,13 +20,13 @@ export default AgoraGen.extend({
   },
   list: {
     page: {
-      title: 'subcategory.menu',
+      title: 'legalstatus.menu',
     },
     menu: {
-      label: 'subcategory.menu',
-      icon: 'style',
-      group: 'class_settings',
-      order: 52,
+      label: 'legalstatus.menu',
+      icon: 'gavel',
+      group: 'provider_settings',
+      order: 32,
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
@@ -36,12 +36,10 @@ export default AgoraGen.extend({
       active: false,
       serverSide: true,
       search: true,
-      searchPlaceholder: 'subcategory.placeholders.search',
+      searchPlaceholder: 'legalstatus.placeholders.search',
     },
-    // Turned client-side sorting due to issues with sorting by domain foreign key. 
-    // TODO: Mitigate the issue and re-enable server side sorting     
     sort: {
-      serverSide: false,
+      serverSide: true,
       active: true,
       fields: SORT_FIELDS,
     },
@@ -55,7 +53,7 @@ export default AgoraGen.extend({
   create: {
     fieldsets: CREATE_FIELDSETS,
     onSubmit(model) {
-      this.transitionTo('subcategory.record.edit', model);
+      this.transitionTo('legalstatus.record.edit', model);
     },
   },
 });
